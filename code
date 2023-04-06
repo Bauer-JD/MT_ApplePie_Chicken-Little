@@ -1,8 +1,8 @@
 // constants won't change. They're used here to set pin numbers:
-const int interaction1 = 2; 
-const int interaction2 = 4; 
-const int interaction3 = 7;  
-const int interaction4 = 8;  
+const int servo1 = 2; 
+const int led2 = 4; 
+const int servo3 = 7;  
+const int servo4 = 8;  
 
 // variables will change:
 int buttonState = 0;  // variable for reading the pushbutton status
@@ -11,17 +11,25 @@ void setup() {
   // initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);
   // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);
+  pinMode(servo1, INPUT);
+  pinMode(led2, INPUT);
+  pinMode(servo3, INPUT);
+  pinMode(servo4, INPUT);
 }
 
 void loop() {
+  interaction1 = digitalRead(servo1);
+  interaction2 = digitalRead(led2);
+  interaction3 = digitalRead(servo3);
+  interaction4 = digitalRead(servo4);
+
   // Interaction 1 : SERVO - the villagers turn angry; completing a circuit (Button) 
+  
   // Interaction 2 : LED - ship piece glows; completing a circuit (Button)
   // Interaction 3 : SERVO - reveal that aliens are friendly; completing a circuit (Button)
   // Interaction 4 : SERVO - villagers turn happy; completing a circuit(Button) 
 
   // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
 
   // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
   if (buttonState == HIGH) {
