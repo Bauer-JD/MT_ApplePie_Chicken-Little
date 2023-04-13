@@ -1,60 +1,69 @@
-// constants won't change. They're used here to set pin numbers:
-const int servo1 = 2; 
-const int led2 = 4; 
-const int servo3 = 7;  
-const int servo4 = 8;  
+#include <Servo.h>
+// first interaction
+Servo servo1; 
+const int button1 = 3; 
 
-// variables will change:
+// second interaction 
+const int led2 = 4; 
+const int button2 = 5; 
+
+// third intereaction 
+Servo servo3; 
+const int button3 = 7; 
+
+// fourth interaction 
+Servo servo4; 
+const int button4 = 10; 
+
 int buttonState = 0;  // variable for reading the pushbutton status
 
 void setup() {
-  // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);
-  // initialize the pushbutton pin as an input:
-  pinMode(servo1, INPUT);
-  pinMode(led2, INPUT);
-  pinMode(servo3, INPUT);
-  pinMode(servo4, INPUT);
+  // first interaction
+  pinMode(button1, INPUT);
+  servo1.attach(2); 
+  servo1.write(0);
+
+  // second interaction
+  pinMode(led2, OUTPUT);
+  pinMode(button2, INPUT);
+
+  // third interaction
+  servo3.attach(6); 
+  servo3.write(0);
+
+  // second interaction 
+
+
 }
 
 void loop() {
-  interaction1 = digitalRead(servo1);
-  interaction2 = digitalRead(led2);
-  interaction3 = digitalRead(servo3);
-  interaction4 = digitalRead(servo4);
 
   // Interaction 1 : SERVO - the villagers turn angry; completing a circuit (Button) 
-    if (interaction1 == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
+  if (digitalRead(button1) == HIGH) {
+    servo1.write(190);
   } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
+    servo1.write(0);
   }
   // Interaction 2 : LED - ship piece glows; completing a circuit (Button)
-    if (interaction2 == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
+  if (digitalRead(button2) == HIGH) {
+    digitalWrite(led2, HIGH);
   } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
+    digitalWrite(led2, LOW);
   }
-  // Interaction 3 : SERVO - reveal that aliens are friendly; completing a circuit (Button)
-    if (interaction3 == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
+  // // Interaction 3 : SERVO - reveal that aliens are friendly; completing a circuit (Button)
+  if (digitalRead(button3) == HIGH) {
+    servo3.write(190);
   } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
+    servo3.write(0);
   }
-  // Interaction 4 : SERVO - villagers turn happy; completing a circuit(Button) 
-    if (interaction4 == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
-  } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
-  }
+  // // Interaction 4 : SERVO - villagers turn happy; completing a circuit(Button) 
+  //   if (interaction4 == HIGH) {
+  //   // turn LED on:
+  //   //digitalWrite(ledPin, HIGH);
+  // } else {
+  //   // turn LED off:
+  //   //digitalWrite(ledPin, LOW);
+  // }
 
 
 }
