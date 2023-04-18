@@ -1,52 +1,69 @@
-/*
-  Button
+#include <Servo.h>
+// first interaction
+Servo servo1; 
+const int button1 = 3; 
 
-  Turns on and off a light emitting diode(LED) connected to digital pin 13,
-  when pressing a pushbutton attached to pin 2.
+// second interaction 
+const int led2 = 4; 
+const int button2 = 5; 
 
-  The circuit:
-  - LED attached from pin 13 to ground through 220 ohm resistor
-  - pushbutton attached to pin 2 from +5V
-  - 10K resistor attached to pin 2 from ground
+// third intereaction 
+Servo servo3; 
+const int button3 = 7; 
 
-  - Note: on most Arduinos there is already an LED on the board
-    attached to pin 13.
+// fourth interaction 
+Servo servo4; 
+const int button4 = 8; 
 
-  created 2005
-  by DojoDave <http://www.0j0.org>
-  modified 30 Aug 2011
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button
-*/
-
-// constants won't change. They're used here to set pin numbers:
-const int buttonPin = 2;  // the number of the pushbutton pin
-const int ledPin = 13;    // the number of the LED pin
-
-// variables will change:
 int buttonState = 0;  // variable for reading the pushbutton status
 
 void setup() {
-  // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin, INPUT);
+  // first interaction
+  pinMode(button1, INPUT);
+  servo1.attach(2); 
+  servo1.write(0);
+
+  // second interaction
+  pinMode(led2, OUTPUT);
+  pinMode(button2, INPUT);
+
+  // third interaction
+  servo3.attach(6); 
+  servo3.write(0);
+
+  // fourth interaction 
+  servo4.attach(10);
+  servo4.write(0);
+
+
 }
 
 void loop() {
-  // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
 
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {
-    // turn LED on:
-    digitalWrite(ledPin, HIGH);
+  // Interaction 1 : SERVO - the villagers turn angry; completing a circuit (Button) 
+  if (digitalRead(button1) == HIGH) {
+    servo1.write(190);
   } else {
-    // turn LED off:
-    digitalWrite(ledPin, LOW);
+    servo1.write(0);
   }
+  // Interaction 2 : LED - ship piece glows; completing a circuit (Button)
+  if (digitalRead(button2) == HIGH) {
+    digitalWrite(led2, HIGH);
+  } else {
+    digitalWrite(led2, LOW);
+  }
+  // // Interaction 3 : SERVO - reveal that aliens are friendly; completing a circuit (Button)
+  if (digitalRead(button3) == HIGH) {
+    servo3.write(190);
+  } else {
+    servo3.write(0);
+  }
+  // // Interaction 4 : SERVO - reveal that villagers are happy; completing a circuit (Button)
+  if (digitalRead(button4) == HIGH) {
+    servo4.write(190);
+  } else {
+    servo4.write(0);
+  }
+
+
 }
-// adding comments is fun!
